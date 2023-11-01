@@ -4,19 +4,53 @@ public class SpaceshipAbility : MonoBehaviour
 {
     public GameObject textMaxSpawnRate;
 
-    public static float spawnRate = 1.5f;
-    public static float damage;
-    public static float collisionResistance;
+    public float spawnRate;
+    public float damage;
+    public int collisionResistance;
+
+    private void Start()
+    {
+        LoadAbility();
+    }
+
+    public void Update()
+    {
+        if (spawnRate <= 0.1f)
+            textMaxSpawnRate.SetActive(true);
+    }
 
     public void UpgradeSpawnRate()
     {
         if (spawnRate > 0.1f)
             spawnRate -= 0.1f;
+
+        SaveAbility();
     }
 
-    public void Update()
+    public void UpgradeDamage()
     {
-        if(spawnRate <= 0.1f)
-            textMaxSpawnRate.SetActive(true);
+        SaveAbility();
+    }
+
+    public void UpgradeCollisionResistance()
+    {
+        SaveAbility();
+    }
+
+    private void SaveAbility()
+    {
+        SaveSystem.SaveAbility(this);
+    }
+
+    public void LoadAbility()
+    {
+        SpaceshipAbility data = SaveSystem.LoadAbility();
+
+        if (data != null)
+        {
+            spawnRate = data.spawnRate;
+            damage = data.damage;
+            collisionResistance = data.collisionResistance;
+        }
     }
 }

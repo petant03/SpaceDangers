@@ -12,7 +12,8 @@ public class Shooting : MonoBehaviour
 
     private void Start()
     {
-        spawnRate = SpaceshipAbility.spawnRate;
+        var sa = gameObject.AddComponent<SpaceshipAbility>();
+        spawnRate = sa.spawnRate;
         Debug.Log("sr: " + spawnRate);
     }
 
