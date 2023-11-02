@@ -14,7 +14,6 @@ public class Shooting : MonoBehaviour
     {
         var sa = gameObject.AddComponent<SpaceshipAbility>();
         spawnRate = sa.spawnRate;
-        Debug.Log("sr: " + spawnRate);
     }
 
     // Update is called once per frame
