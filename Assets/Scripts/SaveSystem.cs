@@ -7,29 +7,38 @@ public class SaveSystem
 {
     public void SaveAbility(SpaceshipAbility ability)
     {
-        string path = Application.persistentDataPath + "/ability.json";
+        string path = Application.persistentDataPath + "/ability.csv";
 
-        string jsonAbility = JsonUtility.ToJson(ability);
-        File.WriteAllText(path, jsonAbility);
+        try
+        {
+            if(File.Exists(path))
+                File.Delete(path);
+
+            using (StreamWriter sw = new StreamWriter(path))
+            {
+                sw.Write(ability.ToString());
+                sw.Close();
+            }
+
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+
 
     }
 
-    public SpaceshipAbility LoadAbility()
+    public string LoadAbility()
     {
-        string path = Application.persistentDataPath + "/ability.json";
+        string path = Application.persistentDataPath + "/ability.csv";
 
         if (File.Exists(path))
         {
-            try
-            {
-                string jsonAbility = File.ReadAllText(path);
-                return JsonUtility.FromJson<SpaceshipAbility>(jsonAbility);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("Errore caricamento file: " + e);
-                return null;
-            }
+            StreamReader sr = new StreamReader(path);
+            var ability = sr.ReadLine();
+            
+            return ability;
         }
         else
             return null;

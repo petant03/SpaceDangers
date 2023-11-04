@@ -20,8 +20,13 @@ public class SpaceshipAbility : MonoBehaviour
 
     public void Update()
     {
-        if (spawnRate <= 0.1f)
-            abilityController.SetActiveTextSpawnRate();
+        //if (spawnRate <= 0.1f)
+        //    abilityController.SetActiveTextSpawnRate();
+    }
+
+    public override string ToString()
+    {
+        return spawnRate + ";" + damage + ";" + collisionResistance; 
     }
 
     public void UpgradeSpawnRate()
@@ -61,19 +66,13 @@ public class SpaceshipAbility : MonoBehaviour
 
     public void LoadAbility()
     {
-        SpaceshipAbility data = saveSystem.LoadAbility();
-        
+        var data = saveSystem.LoadAbility().Split(';');
+
         if (data != null)
         {
-            spawnRate = data.spawnRate;
-            damage = data.damage;
-            collisionResistance = data.collisionResistance;
-        }
-        else
-        {
-            spawnRate = 1.5f;
-            damage = 1;
-            collisionResistance = 1;
+            spawnRate = float.Parse(data[0]);
+            damage = int.Parse(data[1]);
+            collisionResistance = int.Parse(data[2]);
         }
     }
 }
