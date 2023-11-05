@@ -445,7 +445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMaxSpawnRate: {fileID: 1577152157}
-  spawnRateDescription: {fileID: 152340092}
+  spawnRateDescription: {fileID: 152340094}
 --- !u!1 &498610223
 GameObject:
   m_ObjectHideFlags: 0
