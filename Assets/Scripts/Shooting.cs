@@ -13,6 +13,7 @@ public class Shooting : MonoBehaviour
     private void Start()
     {
         var sa = gameObject.AddComponent<SpaceshipAbility>();
+        sa.LoadAbility();
         spawnRate = sa.spawnRate;
     }
 

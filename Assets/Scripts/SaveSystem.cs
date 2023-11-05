@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SaveSystem
@@ -11,14 +10,12 @@ public class SaveSystem
 
         try
         {
-            if(File.Exists(path))
+            if (File.Exists(path))
                 File.Delete(path);
 
-            using (StreamWriter sw = new StreamWriter(path))
-            {
-                sw.Write(ability.ToString());
-                sw.Close();
-            }
+            StreamWriter sw = new StreamWriter(path);
+            sw.Write(ability.ToString());
+            sw.Close();
 
         }
         catch (Exception e)
@@ -33,14 +30,23 @@ public class SaveSystem
     {
         string path = Application.persistentDataPath + "/ability.csv";
 
-        if (File.Exists(path))
+        try
         {
-            StreamReader sr = new StreamReader(path);
-            var ability = sr.ReadLine();
-            
-            return ability;
+            if (File.Exists(path))
+            {
+                StreamReader sr = new StreamReader(path);
+                var ability = sr.ReadLine();
+
+                return ability;
+            }
+            else
+                return null;
         }
-        else
+        catch (Exception e)
+        {
+            Debug.LogException(e);
             return null;
+        }
+
     }
 }
