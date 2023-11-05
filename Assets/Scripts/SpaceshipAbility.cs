@@ -20,6 +20,9 @@ public class SpaceshipAbility : MonoBehaviour
 
     public void Update()
     {
+
+        //abilityController.SetSpawnRateDescription(spawnRate);
+
         //if (spawnRate <= 0.1f)
         //    abilityController.SetActiveTextSpawnRate();
     }
