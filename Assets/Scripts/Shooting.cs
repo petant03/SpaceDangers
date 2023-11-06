@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Shooting : MonoBehaviour
@@ -6,15 +7,15 @@ public class Shooting : MonoBehaviour
     public GameObject bulletPrefab;
 
     float spawnTime;
-    private float spawnRate; //tempo per spawn di ogni proiettile
+    private float spawnRate;
     public float bulletForce; //forza (velocità) del proiettile
-
 
     private void Start()
     {
-        var sa = gameObject.AddComponent<SpaceshipAbility>();
-        sa.LoadAbility();
-        spawnRate = sa.spawnRate;
+        var ss = new SaveLoadSystem();
+        var ability = ss.LoadAbility();
+
+        spawnRate = float.Parse(ability.Split(';')[0]);
     }
 
     // Update is called once per frame
@@ -32,6 +33,16 @@ public class Shooting : MonoBehaviour
                     Shoot();
                 }
             }
+
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    if (spawnTime > spawnRate)
+            //    {
+            //        spawnTime -= spawnRate;
+            //        Shoot();
+            //    }
+            //}
+
         }
     }
 

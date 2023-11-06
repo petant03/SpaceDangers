@@ -5,7 +5,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class SpaceshipAbility : MonoBehaviour
 {
-    private SaveSystem saveSystem;
+    private SaveLoadSystem saveLoadSystem;
 
     public GameObject textMaxSpawnRate;
     public GameObject textDescriptionSpawnRate;
@@ -13,14 +13,13 @@ public class SpaceshipAbility : MonoBehaviour
     public GameObject textDescriptionDamage;
     public GameObject textMaxCollisionResistance;
     public GameObject textDescriptionCollisionResistance;
-    
-    public float spawnRate;             //MAX 0.1 PARTE DA 1.5
-    public int damage;                  //MAX 15 PARTE DA 1
-    public int collisionResistance;     //MAX 4 PARTE DA 1
 
+    public float spawnRate;
+    public int damage;
+    public int collisionResistance;
     private void Start()
     {
-        saveSystem = new SaveSystem();
+        saveLoadSystem = new SaveLoadSystem();
         
         LoadAbility();
     }
@@ -61,7 +60,7 @@ public class SpaceshipAbility : MonoBehaviour
         #endregion
     }
 
-    public override string ToString()
+    public string GetRecapAbility()
     {
         return spawnRate + ";" + damage + ";" + collisionResistance; 
     }
@@ -98,12 +97,12 @@ public class SpaceshipAbility : MonoBehaviour
 
     private void SaveAbility()
     {
-        saveSystem.SaveAbility(this);
+        saveLoadSystem.SaveAbility(this);
     }
 
     public void LoadAbility()
     {
-        var data = saveSystem.LoadAbility();
+        var data = saveLoadSystem.LoadAbility();
 
         if (data != null)
         {
@@ -117,5 +116,23 @@ public class SpaceshipAbility : MonoBehaviour
             damage = 1;
             collisionResistance = 1;
         }
+    }
+
+    public float GetSpawnRate()
+    {
+        LoadAbility();
+        return this.spawnRate;
+    }
+
+    public int GetDamage()
+    {
+        LoadAbility();
+        return this.damage;
+    }
+
+    public int GetCollisionResistance()
+    {
+        LoadAbility();
+        return this.collisionResistance;
     }
 }

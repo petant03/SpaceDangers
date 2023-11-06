@@ -552,8 +552,8 @@ MonoBehaviour:
   textDescriptionSpawnRate: {fileID: 152340092}
   textMaxDamage: {fileID: 2073246836}
   textDescriptionDamage: {fileID: 312329629}
-  textMaxCollisionResistance: {fileID: 0}
-  textDescriptionCollisionResistance: {fileID: 0}
+  textMaxCollisionResistance: {fileID: 1649968267}
+  textDescriptionCollisionResistance: {fileID: 1072648100}
   spawnRate: 0
   damage: 0
   collisionResistance: 0
@@ -1205,7 +1205,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 71.05559}
+  m_AnchoredPosition: {x: 0, y: 71.0556}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1100402140
@@ -1421,7 +1421,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 70.95224, y: 71.05559}
+  m_AnchoredPosition: {x: 70.95224, y: 71.0556}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1158355867
@@ -1649,7 +1649,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -70.95224, y: 71.05559}
+  m_AnchoredPosition: {x: -70.95224, y: 71.0556}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1346276926

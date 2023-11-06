@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6412366435890163016}
   - component: {fileID: 6412366435890163023}
   - component: {fileID: 6843997105804268696}
+  - component: {fileID: 1925776014870540731}
   m_Layer: 0
   m_Name: proiettile
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6412366435890163017
 SpriteRenderer:
@@ -171,3 +172,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0cddd5b4abe97b46af52c5522e11755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1925776014870540731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6412366435890163019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 169b4384ed39c814cb740664d87b1601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMaxSpawnRate: {fileID: 0}
+  textDescriptionSpawnRate: {fileID: 0}
+  textMaxDamage: {fileID: 0}
+  textDescriptionDamage: {fileID: 0}
+  textMaxCollisionResistance: {fileID: 0}
+  textDescriptionCollisionResistance: {fileID: 0}
+  spawnRate: 0
+  damage: 0
+  collisionResistance: 0

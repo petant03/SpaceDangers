@@ -4,23 +4,27 @@ using UnityEngine;
 public class Proiettile : MonoBehaviour
 {
     private int damage;
+    //public GameObject hitEffect;
+
+    private void Start()
+    {
+        var ss = new SaveLoadSystem();
+        var ability = ss.LoadAbility();
+        damage = int.Parse(ability.Split(';')[1]);
+    }
 
     private void Update()
     {
-        if(transform.position.y > 7)
+        if (transform.position.y > 7)
             Destroy(gameObject);
     }
 
-    //public GameObject hitEffect;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(!GameController.gameover)
+        if (!GameController.gameover)
         {
             //GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
             //Destroy(effect, 5f);
-
-            var sa = gameObject.AddComponent<SpaceshipAbility>();
-            damage = sa.damage;
 
             int punti = int.Parse(collision.gameObject.GetComponentInChildren<TextMeshPro>().text);
 
@@ -28,7 +32,7 @@ public class Proiettile : MonoBehaviour
             {
                 punti -= damage;
 
-                if(punti <= 0)
+                if (punti <= 0)
                     Destroy(collision.gameObject);
                 else
                     collision.gameObject.GetComponentInChildren<TextMeshPro>().text = punti.ToString();
