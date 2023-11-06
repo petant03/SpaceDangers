@@ -10,9 +10,6 @@ public class SaveSystem
 
         try
         {
-            if (File.Exists(path))
-                File.Delete(path);
-
             StreamWriter sw = new StreamWriter(path);
             sw.Write(ability.ToString());
             sw.Close();

@@ -9,6 +9,10 @@ public class SpaceshipAbility : MonoBehaviour
 
     public GameObject textMaxSpawnRate;
     public GameObject textDescriptionSpawnRate;
+    public GameObject textMaxDamage;
+    public GameObject textDescriptionDamage;
+    public GameObject textMaxCollisionResistance;
+    public GameObject textDescriptionCollisionResistance;
     
     public float spawnRate;             //MAX 0.1 PARTE DA 1.5
     public int damage;                  //MAX 15 PARTE DA 1
@@ -23,10 +27,38 @@ public class SpaceshipAbility : MonoBehaviour
 
     public void Update()
     {
-        textDescriptionSpawnRate.GetComponent<Text>().text = "Spara un proiettile ogni " + spawnRate.ToString("F2") + " secondi.";
+        #region SpawnRate
+        if (textDescriptionSpawnRate != null)
+            textDescriptionSpawnRate.GetComponent<Text>().text = "Spara un proiettile ogni " + this.spawnRate.ToString("F2") + " secondi.";
 
-        if (spawnRate <= 0.1f)
-            textMaxSpawnRate.SetActive(true);
+        if (this.spawnRate <= 0.1f)
+        {
+            if(textMaxSpawnRate != null)
+                textMaxSpawnRate.SetActive(true);
+        }
+        #endregion
+
+        #region Damage
+        if (textDescriptionDamage != null)
+            textDescriptionDamage.GetComponent<Text>().text = "Un proiettile infligge " + this.damage + " danni.";
+
+        if (this.damage == 15)
+        {
+            if (textMaxDamage != null)
+                textMaxDamage.SetActive(true);
+        }
+        #endregion
+
+        #region CollisionResistance 
+        if (textDescriptionCollisionResistance != null)
+            textDescriptionCollisionResistance.GetComponent<Text>().text = "Resistenza a " + this.collisionResistance + " collisioni.";
+
+        if (this.collisionResistance == 4)
+        {
+            if (textMaxCollisionResistance != null)
+                textMaxCollisionResistance.SetActive(true);
+        }
+        #endregion
     }
 
     public override string ToString()
@@ -46,7 +78,7 @@ public class SpaceshipAbility : MonoBehaviour
 
     public void UpgradeDamage()
     {
-        if (damage < 10)
+        if (damage < 15)
         {
             damage++;
             SaveAbility();
