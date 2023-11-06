@@ -2,16 +2,15 @@ using System;
 using System.IO;
 using UnityEngine;
 
-public class SaveSystem
+public class SaveLoadSystem
 {
+    private readonly string path = Application.persistentDataPath + "/ability.csv";
     public void SaveAbility(SpaceshipAbility ability)
     {
-        string path = Application.persistentDataPath + "/ability.csv";
-
         try
         {
             StreamWriter sw = new StreamWriter(path);
-            sw.Write(ability.ToString());
+            sw.Write(ability.GetRecapAbility());
             sw.Close();
 
         }
@@ -19,14 +18,10 @@ public class SaveSystem
         {
             Debug.LogException(e);
         }
-
-
     }
 
     public string LoadAbility()
     {
-        string path = Application.persistentDataPath + "/ability.csv";
-
         try
         {
             if (File.Exists(path))
@@ -44,6 +39,5 @@ public class SaveSystem
             Debug.LogException(e);
             return null;
         }
-
     }
 }
