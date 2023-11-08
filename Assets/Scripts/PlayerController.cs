@@ -43,7 +43,15 @@ public class PlayerController : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        GameController.gameover = true;
-        restart.SetActive(true);
+        var obj = collision.gameObject.GetComponent<Asteroide>();
+
+        if (obj != null)
+        {
+            GameController.gameover = true;
+            restart.SetActive(true);
+        }
+        else
+            Destroy(collision.gameObject);
+
     }
 }

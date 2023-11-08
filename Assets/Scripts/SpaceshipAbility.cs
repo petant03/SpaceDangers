@@ -67,7 +67,7 @@ public class SpaceshipAbility : MonoBehaviour
 
     public void UpgradeSpawnRate()
     {
-        if (spawnRate > 0.1f)
+        if (spawnRate > 0.5f)
         {
             spawnRate -= 0.1f;
             SaveAbility();

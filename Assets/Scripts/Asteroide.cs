@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class Asteroide : MonoBehaviour
@@ -18,7 +17,7 @@ public class Asteroide : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!GameController.gameover)
+        if (!GameController.gameover)
         {
             if (!set)
             {
