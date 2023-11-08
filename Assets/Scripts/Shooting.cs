@@ -15,7 +15,7 @@ public class Shooting : MonoBehaviour
         var ss = new SaveLoadSystem();
         var ability = ss.LoadAbility();
 
-        spawnRate = float.Parse(ability.Split(';')[0]);
+        spawnRate = ability != null ? float.Parse(ability.Split(';')[0]) : 1.5F;
     }
 
     // Update is called once per frame
@@ -25,16 +25,7 @@ public class Shooting : MonoBehaviour
         {
             spawnTime += Time.deltaTime;
 
-            if (Input.touchCount > 0)
-            {
-                if (spawnTime > spawnRate)
-                {
-                    spawnTime -= spawnRate;
-                    Shoot();
-                }
-            }
-
-            //if (Input.GetMouseButtonDown(0))
+            //if (Input.touchCount > 0)
             //{
             //    if (spawnTime > spawnRate)
             //    {
@@ -42,6 +33,15 @@ public class Shooting : MonoBehaviour
             //        Shoot();
             //    }
             //}
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (spawnTime > spawnRate)
+                {
+                    spawnTime -= spawnRate;
+                    Shoot();
+                }
+            }
 
         }
     }

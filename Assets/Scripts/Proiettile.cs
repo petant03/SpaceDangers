@@ -6,11 +6,16 @@ public class Proiettile : MonoBehaviour
     private int damage;
     //public GameObject hitEffect;
 
+    private SaveLoadSystem ss;
+
     private void Start()
     {
-        var ss = new SaveLoadSystem();
+        ss = new SaveLoadSystem();
         var ability = ss.LoadAbility();
-        damage = int.Parse(ability.Split(';')[1]);
+
+        //damage = ability != null ? int.Parse(ability.Split(';')[1]) : 1;
+
+        damage = 50;
     }
 
     private void Update()
@@ -33,15 +38,23 @@ public class Proiettile : MonoBehaviour
                 punti -= damage;
 
                 if (punti <= 0)
-                    Destroy(collision.gameObject);
+                    DestroyProiettile(collision.gameObject);
                 else
                     collision.gameObject.GetComponentInChildren<TextMeshPro>().text = punti.ToString();
 
             }
             else
-                Destroy(collision.gameObject);
+                DestroyProiettile(collision.gameObject);
 
             Destroy(gameObject);
         }
+    }
+
+    private void DestroyProiettile(GameObject go)
+    {
+        var asteroideID = go.GetComponent<Asteroide>().GetID();
+        var valore = IDGenerator.punteggioAsteroidi[asteroideID];
+        ss.SaveCoins(valore);
+        Destroy(go);
     }
 }

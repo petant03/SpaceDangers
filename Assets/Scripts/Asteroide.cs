@@ -1,16 +1,19 @@
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
 public class Asteroide : MonoBehaviour
 {
-
     public TextMeshPro punteggio;
     bool set;
     Vector3 customScale;
 
+    private int ID;
+
     // Start is called before the first frame update
     void Start()
     {
+        ID = IDGenerator.GetID();
         set = false;
     }
 
@@ -24,6 +27,8 @@ public class Asteroide : MonoBehaviour
                 set = true;
                 var valore = Random.Range(1, 100);
                 punteggio.text = valore.ToString();
+
+                IDGenerator.punteggioAsteroidi.Add(ID, valore);
 
                 customScale = transform.localScale;
 
@@ -55,5 +60,10 @@ public class Asteroide : MonoBehaviour
 
         if (transform.position.y <= -6)
             Destroy(gameObject);
+    }
+
+    public int GetID()
+    {
+        return this.ID;
     }
 }
