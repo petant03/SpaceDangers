@@ -13,7 +13,7 @@ public class Asteroide : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ID = IDGenerator.GetID();
+        ID = GenericService.GetID();
         set = false;
     }
 
@@ -28,7 +28,7 @@ public class Asteroide : MonoBehaviour
                 var valore = Random.Range(1, 100);
                 punteggio.text = valore.ToString();
 
-                IDGenerator.punteggioAsteroidi.Add(ID, valore);
+                GenericService.SetPunteggio(ID, valore);
 
                 customScale = transform.localScale;
 

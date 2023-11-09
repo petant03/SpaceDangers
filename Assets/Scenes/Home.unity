@@ -1812,7 +1812,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1458410715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89159c7b368dfbf4dad04104ff1e746d, type: 3}
+  m_Script: {fileID: 11500000, guid: e2342d2bd60a42944b2986c09c321cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   textCoins: {fileID: 773159885}
@@ -1853,7 +1853,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -184.84517, y: 725.95184}
+  m_AnchoredPosition: {x: -184.84518, y: 725.95184}
   m_SizeDelta: {x: -360, y: -1075}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1597413607

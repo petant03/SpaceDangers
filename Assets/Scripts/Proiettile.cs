@@ -53,7 +53,7 @@ public class Proiettile : MonoBehaviour
     private void DestroyProiettile(GameObject go)
     {
         var asteroideID = go.GetComponent<Asteroide>().GetID();
-        var valore = IDGenerator.punteggioAsteroidi[asteroideID];
+        var valore = GenericService.GetPunteggioByID(asteroideID);
         ss.SaveCoins(valore);
         Destroy(go);
     }
