@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using UnityEditor.Playables;
 using UnityEngine;
 
 public class SaveLoadSystem
@@ -53,7 +52,7 @@ public class SaveLoadSystem
             if (afterGame) //recupero le monete dal file solo se ho terminato la partita
                 loadCoins = LoadCoins();
 
-            if(loadCoins != null) //il file esiste e ho un valore già salvato precedentemente
+            if (loadCoins != null) //il file esiste e ho un valore già salvato precedentemente
             {
                 var coinsTmp = int.Parse(loadCoins);
                 StreamWriter sw = new StreamWriter(pathCoins); //todo con encryption
