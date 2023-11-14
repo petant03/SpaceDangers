@@ -4,7 +4,6 @@ public class PlayerController : MonoBehaviour
 {
     float deltaX, deltaY;
     Rigidbody2D rb;
-    public GameObject restart;
 
     // Start is called before the first frame update
     void Start()
@@ -17,25 +16,28 @@ public class PlayerController : MonoBehaviour
     {
         if(!GameController.gameover)
         {
-            if (Input.touchCount > 0)
+            if(!GameController.isPause)
             {
-                Touch t = Input.GetTouch(0);
-                Vector2 touchPos = Camera.main.ScreenToWorldPoint(t.position);
-
-                switch (t.phase)
+                if (Input.touchCount > 0)
                 {
-                    case TouchPhase.Began:
-                        deltaX = touchPos.x - transform.position.x;
-                        deltaY = touchPos.y - transform.position.y;
-                        break;
+                    Touch t = Input.GetTouch(0);
+                    Vector2 touchPos = Camera.main.ScreenToWorldPoint(t.position);
 
-                    case TouchPhase.Moved:
-                        rb.MovePosition(new Vector2(touchPos.x - deltaX, touchPos.y - deltaY));
-                        break;
+                    switch (t.phase)
+                    {
+                        case TouchPhase.Began:
+                            deltaX = touchPos.x - transform.position.x;
+                            deltaY = touchPos.y - transform.position.y;
+                            break;
 
-                    case TouchPhase.Ended:
-                        rb.velocity = Vector2.zero;
-                        break;
+                        case TouchPhase.Moved:
+                            rb.MovePosition(new Vector2(touchPos.x - deltaX, touchPos.y - deltaY));
+                            break;
+
+                        case TouchPhase.Ended:
+                            rb.velocity = Vector2.zero;
+                            break;
+                    }
                 }
             }
         }
@@ -48,7 +50,6 @@ public class PlayerController : MonoBehaviour
         if (obj != null)
         {
             GameController.gameover = true;
-            restart.SetActive(true);
         }
         else
             Destroy(collision.gameObject);

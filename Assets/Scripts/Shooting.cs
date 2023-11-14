@@ -23,26 +23,28 @@ public class Shooting : MonoBehaviour
     {
         if(!GameController.gameover)
         {
-            spawnTime += Time.deltaTime;
-
-            if (Input.touchCount > 0)
+            if(!GameController.isPause)
             {
-                if (spawnTime > spawnRate)
+                spawnTime += Time.deltaTime;
+
+                if (Input.touchCount > 0)
                 {
-                    spawnTime -= spawnRate;
-                    Shoot();
+                    if (spawnTime > spawnRate)
+                    {
+                        spawnTime -= spawnRate;
+                        Shoot();
+                    }
                 }
+
+                //if (Input.GetMouseButtonDown(0))
+                //{
+                //    if (spawnTime > spawnRate)
+                //    {
+                //        spawnTime -= spawnRate;
+                //        Shoot();
+                //    }
+                //}
             }
-
-            //if (Input.GetMouseButtonDown(0))
-            //{
-            //    if (spawnTime > spawnRate)
-            //    {
-            //        spawnTime -= spawnRate;
-            //        Shoot();
-            //    }
-            //}
-
         }
     }
 

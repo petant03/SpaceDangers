@@ -28,25 +28,28 @@ public class Proiettile : MonoBehaviour
     {
         if (!GameController.gameover)
         {
-            //GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-            //Destroy(effect, 5f);
-
-            int punti = int.Parse(collision.gameObject.GetComponentInChildren<TextMeshPro>().text);
-
-            if (punti > 1)
+            if(!GameController.isPause)
             {
-                punti -= damage;
+                //GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+                //Destroy(effect, 5f);
 
-                if (punti <= 0)
-                    DestroyProiettile(collision.gameObject);
+                int punti = int.Parse(collision.gameObject.GetComponentInChildren<TextMeshPro>().text);
+
+                if (punti > 1)
+                {
+                    punti -= damage;
+
+                    if (punti <= 0)
+                        DestroyProiettile(collision.gameObject);
+                    else
+                        collision.gameObject.GetComponentInChildren<TextMeshPro>().text = punti.ToString();
+
+                }
                 else
-                    collision.gameObject.GetComponentInChildren<TextMeshPro>().text = punti.ToString();
+                    DestroyProiettile(collision.gameObject);
 
+                Destroy(gameObject);
             }
-            else
-                DestroyProiettile(collision.gameObject);
-
-            Destroy(gameObject);
         }
     }
 
