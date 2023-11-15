@@ -7,6 +7,8 @@ public class BottomBar : MonoBehaviour
 {
     public void StartGame()
     {
+        var ss = new SaveLoadSystem();
+        ss.SaveStats(true);
         SceneManager.LoadScene("Game");
     }
 

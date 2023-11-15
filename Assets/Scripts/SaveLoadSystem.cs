@@ -103,7 +103,7 @@ public class SaveLoadSystem
     #endregion
 
     #region Stats
-    public void SaveStats()
+    public void SaveStats(bool aumentaPartita = false)
     {
         try
         {
@@ -121,32 +121,36 @@ public class SaveLoadSystem
                 var partite = int.Parse(statsSplit[1]);
                 var totalAsteroidi = int.Parse(statsSplit[2]);
 
+                if (aumentaPartita)
+                    partite++;
+
                 //confronto e salvo solo se maggiore
                 if (GenericService.GetCountAsteroidi() > bestTmp)
                 {
                     StreamWriter sw = new StreamWriter(pathStats); //todo con encryption
                     
-                    //il 2 sarà da sostituire con il numero di partite fatte
-                    var s = String.Format("{0};{1};{2}", GenericService.GetCountAsteroidi(), 2, (totalAsteroidi + GenericService.GetCountAsteroidi()));
-
+                    var s = String.Format("{0};{1};{2}", GenericService.GetCountAsteroidi(), partite, (totalAsteroidi + GenericService.GetCountAsteroidi()));
                     sw.Write(s);
+
                     sw.Close();
                 }
                 else
                 {
                     StreamWriter sw = new StreamWriter(pathStats); //todo con encryption
 
-                    //il 2 sarà da sostituire con il numero di partite fatte
-                    var s = String.Format("{0};{1};{2}", bestTmp, 2, (totalAsteroidi + GenericService.GetCountAsteroidi()));
-
+                    var s = String.Format("{0};{1};{2}", bestTmp, partite, (totalAsteroidi + GenericService.GetCountAsteroidi()));
                     sw.Write(s);
+
                     sw.Close();
                 }
             }
             else //il file non esiste, quindi lo creo da zero
             {
                 StreamWriter sw = new StreamWriter(pathStats); //todo con encryption
-                sw.Write(GenericService.GetCountAsteroidi());
+                
+                var s = String.Format("{0};{1};{2}", GenericService.GetCountAsteroidi(), 1, GenericService.GetCountAsteroidi());
+                sw.Write(s);
+
                 sw.Close();
             }
 

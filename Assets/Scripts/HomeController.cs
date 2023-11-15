@@ -14,6 +14,7 @@ public class HomeController : MonoBehaviour
     private void Start()
     {
         ss = new SaveLoadSystem();
+        SetStats();
     }
 
     public void SetStats()
@@ -26,9 +27,9 @@ public class HomeController : MonoBehaviour
         {
             best.text = String.Format(bestString, bestTmp.Split(";")[0]);
 
-            var avgAsteroidi = int.Parse(bestTmp.Split(";")[1]);
-            var partite = int.Parse(bestTmp.Split(";")[2]);
-            avg.text = String.Format(avgString, (avgAsteroidi/partite));
+            var partite = int.Parse(bestTmp.Split(";")[1]);
+            var totalAsteroidi = int.Parse(bestTmp.Split(";")[2]);
+            avg.text = String.Format(avgString, (totalAsteroidi / partite));
         }
         else
         {

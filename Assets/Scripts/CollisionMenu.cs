@@ -11,6 +11,8 @@ public class CollisionMenu : MonoBehaviour
 
     public void Restart()
     {
+        var ss = new SaveLoadSystem();
+        ss.SaveStats(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         GameController.gameover = false;
     }
