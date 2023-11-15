@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TopBar : MonoBehaviour
@@ -21,5 +22,10 @@ public class TopBar : MonoBehaviour
     {
         coins = ss.LoadCoins() != null ? int.Parse(ss.LoadCoins()) : 0;
         textCoins.text = coins.ToString();
+    }
+
+    public void GoToShop()
+    {
+        SceneManager.LoadScene("Shop");
     }
 }
