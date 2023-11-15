@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] GameObject collisionMenu;
     float deltaX, deltaY;
     Rigidbody2D rb;
+    public Text punteggio;
     private SaveLoadSystem ss;
 
     // Start is called before the first frame update
@@ -54,8 +56,9 @@ public class PlayerController : MonoBehaviour
         if (obj != null)
         {
             GameController.gameover = true;
-            ss.SaveStats();
+            punteggio.text = "Punteggio: " + GenericService.GetCountAsteroidi();
             collisionMenu.SetActive(true);
+            ss.SaveStats();
         }
         else
             Destroy(collision.gameObject);
