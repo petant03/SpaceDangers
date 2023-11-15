@@ -7,6 +7,7 @@ public static class GenericService
 {
     private static int asteroideID = 0;
     private static Dictionary<int, int> punteggioAsteroidi = new Dictionary<int, int>();
+    private static int countAsteroidi = 0;
 
     public static int GetID()
     {
@@ -25,6 +26,7 @@ public static class GenericService
         punteggioAsteroidi.Add(id, punteggio);
     }
 
+    #region Upgrade
     public static Dictionary<int, int> GetCostoSpawnRate()
     {
         //la chiave sarà la velocità di sparo, che è univoca e il valore sarà il costo
@@ -85,5 +87,20 @@ public static class GenericService
 
         return valore;
     }
+    #endregion
 
+    public static void AumentaCountAsteroidi()
+    {
+        countAsteroidi++;
+    }
+
+    public static int GetCountAsteroidi()
+    {
+        return countAsteroidi;
+    }
+
+    public static void ResetCountAsteroidi()
+    {
+        countAsteroidi = 0;
+    }
 }

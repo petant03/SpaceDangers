@@ -13,9 +13,9 @@ public class Proiettile : MonoBehaviour
         ss = new SaveLoadSystem();
         var ability = ss.LoadAbility();
 
-        damage = ability != null ? int.Parse(ability.Split(';')[1]) : 1;
+        //damage = ability != null ? int.Parse(ability.Split(';')[1]) : 1;
 
-        //damage = 50;
+        damage = 50;
     }
 
     private void Update()
@@ -57,6 +57,7 @@ public class Proiettile : MonoBehaviour
     {
         var asteroideID = go.GetComponent<Asteroide>().GetID();
         var valore = GenericService.GetPunteggioByID(asteroideID);
+        GenericService.AumentaCountAsteroidi();
         ss.SaveCoins(valore);
         Destroy(go);
     }

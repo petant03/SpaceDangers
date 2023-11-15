@@ -50,7 +50,8 @@ public class SpaceshipAbility : MonoBehaviour
                 textMaxSpawnRate.SetActive(true);
         }
 
-        textNextUpgradeSpawnRate.GetComponent<Text>().text = String.Format(upgrade, costoPerMiglioramentoSpawnRate.ToString());
+        if (textDescriptionSpawnRate != null)
+            textNextUpgradeSpawnRate.GetComponent<Text>().text = String.Format(upgrade, costoPerMiglioramentoSpawnRate.ToString());
         #endregion
 
         #region Damage
@@ -65,7 +66,8 @@ public class SpaceshipAbility : MonoBehaviour
                 textMaxDamage.SetActive(true);
         }
 
-        textNextUpgradeDamage.GetComponent<Text>().text = String.Format(upgrade, costoPerMiglioramentoDamage.ToString());
+        if (textDescriptionDamage != null)
+            textNextUpgradeDamage.GetComponent<Text>().text = String.Format(upgrade, costoPerMiglioramentoDamage.ToString());
         #endregion
 
         #region CollisionResistance 
@@ -80,7 +82,8 @@ public class SpaceshipAbility : MonoBehaviour
                 textMaxCollisionResistance.SetActive(true);
         }
 
-        textNextUpgradeCollisionResistance.GetComponent<Text>().text = String.Format(upgrade, costoPerMiglioramentoCollisionResistance.ToString());
+        if (textDescriptionCollisionResistance != null)
+            textNextUpgradeCollisionResistance.GetComponent<Text>().text = String.Format(upgrade, costoPerMiglioramentoCollisionResistance.ToString());
         #endregion
     }
 

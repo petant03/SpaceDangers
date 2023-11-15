@@ -5,11 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    private void Start()
-    {
-        //var sa = gameObject.AddComponent<SpaceshipAbility>();
-        //sa.LoadAbility();
-    }
 
     public void PlayGame()
     {

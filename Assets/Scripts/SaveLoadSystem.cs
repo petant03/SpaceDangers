@@ -6,6 +6,9 @@ public class SaveLoadSystem
 {
     private readonly string pathAbility = Application.persistentDataPath + "/ability.csv";
     private readonly string pathCoins = Application.persistentDataPath + "/coins.csv";
+    private readonly string pathStats = Application.persistentDataPath + "/stats.csv";
+
+    #region Ability
     public void SaveAbility(SpaceshipAbility ability)
     {
         try
@@ -42,7 +45,9 @@ public class SaveLoadSystem
             return null;
         }
     }
+    #endregion
 
+    #region Coins
     public void SaveCoins(int coins, bool afterGame = true)
     {
         try
@@ -95,4 +100,64 @@ public class SaveLoadSystem
             return null;
         }
     }
+    #endregion
+
+    #region Stats
+    public void SaveStats()
+    {
+        try
+        {
+            string loadStats = LoadStats();
+
+            if (loadStats != null) //il file esiste e ho un valore già salvato precedentemente
+            {
+                //recupero il valore più alto degli asteroidi
+                var statsTmp = int.Parse(loadStats);
+                 
+                //confronto e salvo solo se maggiore
+                if(GenericService.GetCountAsteroidi() > statsTmp)
+                {
+                    StreamWriter sw = new StreamWriter(pathStats); //todo con encryption
+                    sw.Write(GenericService.GetCountAsteroidi());
+                    sw.Close();
+                }
+            }
+            else //il file non esiste, quindi lo creo da zero
+            {
+                StreamWriter sw = new StreamWriter(pathStats); //todo con encryption
+                sw.Write(GenericService.GetCountAsteroidi());
+                sw.Close();
+            }
+
+            GenericService.ResetCountAsteroidi();
+
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+    }
+
+    public string LoadStats()
+    {
+        try
+        {
+            if (File.Exists(pathStats))
+            {
+                StreamReader sr = new StreamReader(pathStats); //todo con encryption
+                var stats = sr.ReadLine();
+                sr.Close();
+
+                return stats;
+            }
+            else
+                return null;
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+            return null;
+        }
+    }
+    #endregion
 }

@@ -6,11 +6,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject collisionMenu;
     float deltaX, deltaY;
     Rigidbody2D rb;
+    private SaveLoadSystem ss;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        ss = new SaveLoadSystem();
     }
 
     // Update is called once per frame
@@ -52,22 +54,11 @@ public class PlayerController : MonoBehaviour
         if (obj != null)
         {
             GameController.gameover = true;
+            ss.SaveStats();
             collisionMenu.SetActive(true);
         }
         else
             Destroy(collision.gameObject);
 
-    }
-    
-    public void Home()
-    {
-        SceneManager.LoadScene("Home");
-        GameController.gameover = false;
-    }
-
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        GameController.gameover = false;
     }
 }

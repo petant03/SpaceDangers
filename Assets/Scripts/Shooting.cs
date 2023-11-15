@@ -27,16 +27,7 @@ public class Shooting : MonoBehaviour
             {
                 spawnTime += Time.deltaTime;
 
-                if (Input.touchCount > 0)
-                {
-                    if (spawnTime > spawnRate)
-                    {
-                        spawnTime -= spawnRate;
-                        Shoot();
-                    }
-                }
-
-                //if (Input.GetMouseButtonDown(0))
+                //if (Input.touchCount > 0)
                 //{
                 //    if (spawnTime > spawnRate)
                 //    {
@@ -44,6 +35,15 @@ public class Shooting : MonoBehaviour
                 //        Shoot();
                 //    }
                 //}
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if (spawnTime > spawnRate)
+                    {
+                        spawnTime -= spawnRate;
+                        Shoot();
+                    }
+                }
             }
         }
     }
