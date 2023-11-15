@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] GameObject collisionMenu;
     float deltaX, deltaY;
     Rigidbody2D rb;
 
@@ -50,9 +52,22 @@ public class PlayerController : MonoBehaviour
         if (obj != null)
         {
             GameController.gameover = true;
+            collisionMenu.SetActive(true);
         }
         else
             Destroy(collision.gameObject);
 
+    }
+    
+    public void Home()
+    {
+        SceneManager.LoadScene("Home");
+        GameController.gameover = false;
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameController.gameover = false;
     }
 }
