@@ -89,6 +89,7 @@ public static class GenericService
     }
     #endregion
 
+    #region Stats
     public static void AumentaCountAsteroidi()
     {
         countAsteroidi++;
@@ -103,4 +104,5 @@ public static class GenericService
     {
         countAsteroidi = 0;
     }
+    #endregion
 }

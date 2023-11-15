@@ -111,14 +111,35 @@ public class SaveLoadSystem
 
             if (loadStats != null) //il file esiste e ho un valore già salvato precedentemente
             {
+                //0 => best
+                //1 => partite fatte
+                //2 => totaleAsteroidi
+                var statsSplit = loadStats.Split(';');
+
                 //recupero il valore più alto degli asteroidi
-                var statsTmp = int.Parse(loadStats);
-                 
+                var bestTmp = int.Parse(statsSplit[0]);
+                var partite = int.Parse(statsSplit[1]);
+                var totalAsteroidi = int.Parse(statsSplit[2]);
+
                 //confronto e salvo solo se maggiore
-                if(GenericService.GetCountAsteroidi() > statsTmp)
+                if (GenericService.GetCountAsteroidi() > bestTmp)
                 {
                     StreamWriter sw = new StreamWriter(pathStats); //todo con encryption
-                    sw.Write(GenericService.GetCountAsteroidi());
+                    
+                    //il 2 sarà da sostituire con il numero di partite fatte
+                    var s = String.Format("{0};{1};{2}", GenericService.GetCountAsteroidi(), 2, (totalAsteroidi + GenericService.GetCountAsteroidi()));
+
+                    sw.Write(s);
+                    sw.Close();
+                }
+                else
+                {
+                    StreamWriter sw = new StreamWriter(pathStats); //todo con encryption
+
+                    //il 2 sarà da sostituire con il numero di partite fatte
+                    var s = String.Format("{0};{1};{2}", bestTmp, 2, (totalAsteroidi + GenericService.GetCountAsteroidi()));
+
+                    sw.Write(s);
                     sw.Close();
                 }
             }
