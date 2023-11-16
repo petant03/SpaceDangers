@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,14 +8,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject collisionMenu;
     float deltaX, deltaY;
     Rigidbody2D rb;
+    SpriteRenderer sr;
     public Text punteggio;
+
     private SaveLoadSystem ss;
+    private int collisionResistance;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         ss = new SaveLoadSystem();
+
+        var crTmp = ss.LoadAbility();
+        collisionResistance = crTmp != null ? int.Parse(crTmp.Split(";")[2]) : 1;
     }
 
     // Update is called once per frame
@@ -55,13 +63,54 @@ public class PlayerController : MonoBehaviour
 
         if (obj != null)
         {
-            GameController.gameover = true;
-            punteggio.text = "Punteggio: " + GenericService.GetCountAsteroidi();
-            collisionMenu.SetActive(true);
-            ss.SaveStats();
+            collisionResistance--;
+            
+            if (collisionResistance > 0)
+            {
+                //fading e continuo il gioco
+                Destroy(collision.gameObject);
+
+                InitFaiding();
+            }
+            else
+            {
+                //gioco finito
+                GameController.gameover = true;
+                punteggio.text = "Punteggio: " + GenericService.GetCountAsteroidi();
+                collisionMenu.SetActive(true);
+                ss.SaveStats();
+            }
+
         }
         else
             Destroy(collision.gameObject);
+    }
 
+    private void InitFaiding()
+    {
+        StartCoroutine("FadeOut");
+        StartCoroutine("FadeIn");
+    }
+
+    IEnumerator FadeIn()
+    {
+        for(float f = 0.05f; f <= 1; f += 0.05f)
+        {
+            Color c = sr.material.color;
+            c.a = f;
+            sr.material.color = c;
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    IEnumerator FadeOut()
+    {
+        for(float f = 1f; f >= 0.05f; f -= 0.05f)
+        {
+            Color c = sr.material.color;
+            c.a = f;
+            sr.material.color = c;
+            yield return new WaitForSeconds(0.05f);
+        }
     }
 }
