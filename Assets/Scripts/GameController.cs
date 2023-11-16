@@ -4,7 +4,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     float spawnTime;
-    float spawnRate = 2.5f; //ogni 2.5 secondi
+    float spawnRate = 2f; //ogni 2.5 secondi
     public GameObject asteroide;
     public static bool gameover;
     public static bool isPause;
@@ -24,6 +24,8 @@ public class GameController : MonoBehaviour
             if(!isPause)
             {
                 spawnTime += Time.deltaTime;
+                GenericService.SetTotalGameTime(spawnTime);
+
                 if (spawnTime > spawnRate)
                 {
                     spawnTime -= spawnRate;

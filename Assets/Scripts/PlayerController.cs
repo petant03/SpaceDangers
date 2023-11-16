@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         {
             collisionResistance--;
             
-            if (collisionResistance > 0)
+            if (collisionResistance >= 0)
             {
                 //fading e continuo il gioco
                 Destroy(collision.gameObject);

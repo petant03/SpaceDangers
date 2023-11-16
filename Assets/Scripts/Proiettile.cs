@@ -13,9 +13,7 @@ public class Proiettile : MonoBehaviour
         ss = new SaveLoadSystem();
         var ability = ss.LoadAbility();
 
-        //damage = ability != null ? int.Parse(ability.Split(';')[1]) : 1;
-
-        damage = 50;
+        damage = ability != null ? int.Parse(ability.Split(';')[1]) : 1;
     }
 
     private void Update()

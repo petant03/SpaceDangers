@@ -8,7 +8,9 @@ public static class GenericService
     private static int asteroideID = 0;
     private static Dictionary<int, int> punteggioAsteroidi = new Dictionary<int, int>();
     private static int countAsteroidi = 0;
+    private static float totalGameTime = 0;
 
+    #region Asteroide
     public static int GetID()
     {
         //aumento ogni volta l'ID prima di fare il return così è sempre diverso
@@ -25,6 +27,7 @@ public static class GenericService
     {
         punteggioAsteroidi.Add(id, punteggio);
     }
+    #endregion
 
     #region Upgrade
     public static Dictionary<int, int> GetCostoSpawnRate()
@@ -105,4 +108,19 @@ public static class GenericService
         countAsteroidi = 0;
     }
     #endregion
+
+    public static void SetTotalGameTime(float value)
+    {
+        totalGameTime += value;
+    }
+
+    public static float GetTotalGameTime()
+    {
+        return totalGameTime;
+    }
+
+    public static void ResetTotalGameTime()
+    {
+        totalGameTime = 0;
+    }
 }

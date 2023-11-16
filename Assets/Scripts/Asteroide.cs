@@ -27,7 +27,10 @@ public class Asteroide : MonoBehaviour
                 if (!set)
                 {
                     set = true;
-                    var valore = Random.Range(1, 100);
+
+                    var time = (int)GenericService.GetTotalGameTime();
+
+                    var valore = Random.Range((time / 100), ((time / 100) + 10));
                     punteggio.text = valore.ToString();
 
                     GenericService.SetPunteggio(ID, valore);
