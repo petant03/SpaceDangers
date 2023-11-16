@@ -5,11 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class BottomBar : MonoBehaviour
 {
-    public void StartGame()
+    public void Home()
     {
-        var ss = new SaveLoadSystem();
-        ss.SaveStats(true);
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Home");
     }
 
     public void Shop()

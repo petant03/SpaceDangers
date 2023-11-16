@@ -38,4 +38,10 @@ public class HomeController : MonoBehaviour
         }
 
     }
+
+    public void StartGame()
+    {
+        ss.SaveStats(true);
+        SceneManager.LoadScene("Game");
+    }
 }
