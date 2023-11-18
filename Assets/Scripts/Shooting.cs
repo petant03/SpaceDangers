@@ -33,16 +33,8 @@ public class Shooting : MonoBehaviour
             {
                 spawnTime += Time.deltaTime;
 
-                //if (Input.touchCount > 0)
-                //{
-                //    if (spawnTime > spawnRate)
-                //    {
-                //        spawnTime -= spawnRate;
-                //        Shoot();
-                //    }
-                //}
-
-                if (Input.GetMouseButtonDown(0))
+                //PER MOBILE
+                if (Input.touchCount > 0)
                 {
                     if (spawnTime > spawnRate)
                     {
@@ -50,6 +42,16 @@ public class Shooting : MonoBehaviour
                         Shoot();
                     }
                 }
+
+                //PER PC
+                //if (Input.GetMouseButtonDown(0))
+                //{
+                //    if (spawnTime > spawnRate)
+                //    {
+                //        spawnTime -= spawnRate;
+                //        Shoot();
+                //    }
+                //}
             }
         }
     }

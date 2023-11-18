@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
         ss = new SaveLoadSystem();
 
         var crTmp = ss.LoadAbility();
-        collisionResistance = crTmp != null ? int.Parse(crTmp.Split(";")[2]) : 1;
+        collisionResistance = crTmp != null ? int.Parse(crTmp.Split(";")[2]) : 0;
     }
     private void Awake()
     {
@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
 
         if (obj != null)
         {
+            Handheld.Vibrate();
             collisionResistance--;
             
             if (collisionResistance >= 0)
