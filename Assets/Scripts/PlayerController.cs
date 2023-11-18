@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer sr;
     public Text punteggio;
+    private AudioManager audioManager;
 
     private SaveLoadSystem ss;
     private int collisionResistance;
@@ -23,6 +24,10 @@ public class PlayerController : MonoBehaviour
 
         var crTmp = ss.LoadAbility();
         collisionResistance = crTmp != null ? int.Parse(crTmp.Split(";")[2]) : 1;
+    }
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -68,14 +73,17 @@ public class PlayerController : MonoBehaviour
             if (collisionResistance >= 0)
             {
                 //fading e continuo il gioco
+                audioManager.PlaySFX(audioManager.explosion);
                 Destroy(collision.gameObject);
 
+                audioManager.PlaySFX(audioManager.spaceShipCollision);
                 InitFaiding();
             }
             else
             {
                 //gioco finito
                 GameController.gameover = true;
+                audioManager.PlaySFX(audioManager.spaceShipCollision);
                 punteggio.text = "Punteggio: " + GenericService.GetCountAsteroidi();
                 collisionMenu.SetActive(true);
                 ss.SaveStats();
@@ -86,6 +94,7 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
     }
 
+    #region Faid
     private void InitFaiding()
     {
         StartCoroutine("FadeOut");
@@ -113,4 +122,5 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
     }
+    #endregion
 }

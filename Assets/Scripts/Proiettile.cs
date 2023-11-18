@@ -4,9 +4,9 @@ using UnityEngine;
 public class Proiettile : MonoBehaviour
 {
     private int damage;
-    //public GameObject hitEffect;
 
     private SaveLoadSystem ss;
+    private AudioManager audioManager;
 
     private void Start()
     {
@@ -22,14 +22,18 @@ public class Proiettile : MonoBehaviour
             Destroy(gameObject);
     }
 
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!GameController.gameover)
         {
             if(!GameController.isPause)
             {
-                //GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-                //Destroy(effect, 5f);
+                audioManager.PlaySFX(audioManager.hitEffect);
 
                 int punti = int.Parse(collision.gameObject.GetComponentInChildren<TextMeshPro>().text);
 
@@ -38,25 +42,26 @@ public class Proiettile : MonoBehaviour
                     punti -= damage;
 
                     if (punti <= 0)
-                        DestroyProiettile(collision.gameObject);
+                        DestroyAsteroide(collision.gameObject);
                     else
                         collision.gameObject.GetComponentInChildren<TextMeshPro>().text = punti.ToString();
 
                 }
                 else
-                    DestroyProiettile(collision.gameObject);
+                    DestroyAsteroide(collision.gameObject);
 
                 Destroy(gameObject);
             }
         }
     }
 
-    private void DestroyProiettile(GameObject go)
+    private void DestroyAsteroide(GameObject go)
     {
         var asteroideID = go.GetComponent<Asteroide>().GetID();
         var valore = GenericService.GetPunteggioByID(asteroideID);
         GenericService.AumentaCountAsteroidi();
         ss.SaveCoins(valore);
+        audioManager.PlaySFX(audioManager.explosion);
         Destroy(go);
     }
 }

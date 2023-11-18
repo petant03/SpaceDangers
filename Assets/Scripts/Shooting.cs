@@ -5,6 +5,7 @@ public class Shooting : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
+    private AudioManager audioManager;
 
     float spawnTime;
     private float spawnRate;
@@ -16,6 +17,11 @@ public class Shooting : MonoBehaviour
         var ability = ss.LoadAbility();
 
         spawnRate = ability != null ? float.Parse(ability.Split(';')[0]) : 1.5F;
+    }
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -52,6 +58,7 @@ public class Shooting : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        audioManager.PlaySFX(audioManager.shoot);
         rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
     }
 }
