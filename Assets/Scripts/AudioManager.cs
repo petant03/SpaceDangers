@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -29,6 +30,28 @@ public class AudioManager : MonoBehaviour
     public void PlaySFX(AudioClip clip)
     {
         SFXSource.PlayOneShot(clip);
+    }
+
+    public void ToggleMusic(Slider s)
+    {
+        musicSource.mute = !musicSource.mute;
+        s.enabled = !musicSource.mute;
+    }
+
+    public void ToggleSFX(Slider s)
+    {
+        SFXSource.mute = !SFXSource.mute;
+        s.enabled = !SFXSource.mute;
+    }
+
+    public void MusicVolume(float volume)
+    {
+        musicSource.volume = volume;
+    }
+
+    public void SFXVolume(float volume)
+    {
+        SFXSource.volume = volume;
     }
 
 }
