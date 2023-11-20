@@ -590,10 +590,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 359133842}
-  - component: {fileID: 359133843}
   m_Layer: 5
   m_Name: Options Panel
-  m_TagString: Untagged
+  m_TagString: Opt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -619,20 +618,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &359133843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 359133841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2287158695897314cb8d9277f36b30f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicSlider: {fileID: 829289796}
-  SFXSlider: {fileID: 849781765}
 --- !u!1 &365586560
 GameObject:
   m_ObjectHideFlags: 0
@@ -1469,8 +1454,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 359133843}
-        m_TargetAssemblyTypeName: AudioSettings, Assembly-CSharp
+      - m_Target: {fileID: 1878317068}
+        m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 1
         m_Arguments:
@@ -1572,8 +1557,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 359133843}
-        m_TargetAssemblyTypeName: AudioSettings, Assembly-CSharp
+      - m_Target: {fileID: 1878317068}
+        m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: SetSFXVolume
         m_Mode: 1
         m_Arguments:
@@ -2080,8 +2065,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 359133843}
-        m_TargetAssemblyTypeName: AudioSettings, Assembly-CSharp
+      - m_Target: {fileID: 1878317068}
+        m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: ToggleSFX
         m_Mode: 1
         m_Arguments:
@@ -2290,8 +2275,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 359133843}
-        m_TargetAssemblyTypeName: AudioSettings, Assembly-CSharp
+      - m_Target: {fileID: 1878317068}
+        m_TargetAssemblyTypeName: Options, Assembly-CSharp
         m_MethodName: ToggleMusic
         m_Mode: 1
         m_Arguments:
@@ -2825,6 +2810,7 @@ GameObject:
   - component: {fileID: 1878317065}
   - component: {fileID: 1878317064}
   - component: {fileID: 1878317067}
+  - component: {fileID: 1878317068}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2918,6 +2904,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f6df205bd597c41ab674b57688c51e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1878317068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878317063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2287158695897314cb8d9277f36b30f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSlider: {fileID: 829289796}
+  SFXSlider: {fileID: 849781765}
 --- !u!1 &1966435695
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    private void Start()
+    {
+        //PlayerPrefs.DeleteAll();
+    }
 
     public void PlayGame()
     {
