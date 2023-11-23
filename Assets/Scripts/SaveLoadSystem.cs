@@ -48,13 +48,13 @@ public class SaveLoadSystem
     #endregion
 
     #region Coins
-    public void SaveCoins(int coins, bool afterGame = true)
+    public void SaveCoins(int coins, bool updateCoins = true)
     {
         try
         {
             string loadCoins = null;
 
-            if (afterGame) //recupero le monete dal file solo se ho terminato la partita
+            if (updateCoins) //recupero le monete dal file solo se ho terminato la partita
                 loadCoins = LoadCoins();
 
             if (loadCoins != null) //il file esiste e ho un valore già salvato precedentemente
