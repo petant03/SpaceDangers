@@ -16,6 +16,12 @@ public class AudioManager : MonoBehaviour
     public AudioClip explosion;
     public AudioClip spaceShipCollision;
 
+    [Header("--- image ---")]
+    public Sprite volume;
+    public Sprite muteVolume;
+    public Sprite sfx;
+    public Sprite muteSFX;
+
     private void Start()
     {
         musicSource.clip = background;
@@ -32,7 +38,7 @@ public class AudioManager : MonoBehaviour
         SFXSource.PlayOneShot(clip);
     }
 
-    public void ToggleMusic(Slider s)
+    public void ToggleMusic(Button b, Slider s)
     {
         if(PlayerPrefs.HasKey("muteMusic"))
         {
@@ -45,17 +51,22 @@ public class AudioManager : MonoBehaviour
             s.enabled = true;
         }
 
+        b.image.sprite = musicSource.mute ? muteVolume : volume;
+
         PlayerPrefs.SetInt("muteMusic", musicSource.mute ? 1 : 0);
     }
 
-    public void ToggleMusic(Slider s, bool value)
+    public void ToggleMusic(Button b, Slider s, bool value)
     {
         musicSource.mute = value;
         s.enabled = !musicSource.mute;
+
+        b.image.sprite = musicSource.mute ? muteVolume : volume;
+
         PlayerPrefs.SetInt("muteMusic", musicSource.mute ? 1 : 0);
     }
 
-    public void ToggleSFX(Slider s)
+    public void ToggleSFX(Button b, Slider s)
     {
         if (PlayerPrefs.HasKey("muteSFX"))
         {
@@ -68,13 +79,18 @@ public class AudioManager : MonoBehaviour
             s.enabled = true;
         }
 
+        b.image.sprite = SFXSource.mute ? muteSFX : sfx;
+
         PlayerPrefs.SetInt("muteSFX", SFXSource.mute ? 1 : 0);
     }
 
-    public void ToggleSFX(Slider s, bool value)
+    public void ToggleSFX(Button b, Slider s, bool value)
     {
         SFXSource.mute = value;
         s.enabled = !SFXSource.mute;
+
+        b.image.sprite = SFXSource.mute ? muteSFX : sfx;
+
         PlayerPrefs.SetInt("muteSFX", SFXSource.mute ? 1 : 0);
     }
 

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class Options : MonoBehaviour
 {
     [SerializeField] Slider musicSlider, SFXSlider;
+    [SerializeField] Button musicButton, SFXButton;
+
     private AudioManager audioManager;
 
     private void Start()
@@ -37,22 +39,22 @@ public class Options : MonoBehaviour
     #region Toggle
     public void ToggleMusic()
     {
-        audioManager.ToggleMusic(musicSlider);
+        audioManager.ToggleMusic(musicButton, musicSlider);
     }
 
     public void ToggleMusic(bool value)
     {
-        audioManager.ToggleMusic(musicSlider,value);
+        audioManager.ToggleMusic(musicButton, musicSlider, value);
     }
 
     public void ToggleSFX()
     {
-        audioManager.ToggleSFX(SFXSlider);
+        audioManager.ToggleSFX(SFXButton, SFXSlider);
     }
 
     public void ToggleSFX(bool value)
     {
-        audioManager.ToggleSFX(SFXSlider, value);
+        audioManager.ToggleSFX(SFXButton, SFXSlider, value);
     }
     #endregion
 
