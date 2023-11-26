@@ -82,10 +82,10 @@ public static class GenericService
         //la chiave sarà la resistenza alle collisioni, che è univoca e il valore sarà il costo
         var valore = new Dictionary<int, int>
         {
-            //parte da 1 (non calcolabile per il costo) e arriva fino a 4
-            { 2, 300 },
-            { 3, 450 },
-            { 4, 700 }
+            //parte da 1 (non calcolabile per il costo) e arriva fino a 3
+            { 1, 300 },
+            { 2, 450 },
+            { 3, 700 }
         };
 
         return valore;

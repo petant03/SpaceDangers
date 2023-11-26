@@ -178,7 +178,7 @@ public class SpaceshipAbility : MonoBehaviour
         {
             spawnRate = 1.5f;
             damage = 1;
-            collisionResistance = 1;
+            collisionResistance = 0;
         }
     }
 }

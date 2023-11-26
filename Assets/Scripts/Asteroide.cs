@@ -30,6 +30,9 @@ public class Asteroide : MonoBehaviour
 
                     var time = (int)GenericService.GetTotalGameTime();
 
+                    if (time / 100 < 1)
+                        time += 100;
+
                     var valore = Random.Range((time / 100), ((time / 100) + 10));
                     punteggio.text = valore.ToString();
 

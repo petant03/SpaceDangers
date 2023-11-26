@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    float gameTime;
     float spawnTime;
     float spawnRate = 2f; //ogni 2.5 secondi
     public GameObject asteroide;
@@ -14,6 +15,7 @@ public class GameController : MonoBehaviour
     {
         gameover = false;
         isPause = false;
+        gameTime = 0;
     }
 
     // Update is called once per frame
@@ -23,8 +25,9 @@ public class GameController : MonoBehaviour
         {
             if(!isPause)
             {
+                gameTime += Time.deltaTime;
                 spawnTime += Time.deltaTime;
-                GenericService.SetTotalGameTime(spawnTime);
+                GenericService.SetTotalGameTime(gameTime);
 
                 if (spawnTime > spawnRate)
                 {
