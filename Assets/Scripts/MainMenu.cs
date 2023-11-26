@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     private void Start()
     {
+        InitCosti();
         ControlPrefs();
     }
 
@@ -40,5 +41,12 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.DeleteKey("100Monete");
             PlayerPrefs.SetInt("100Monete", 0); //servono quattro video per ottenere la ricompensa
         }
+    }
+
+    private void InitCosti()
+    {
+        GenericService.SetCostoSpawnRate();
+        GenericService.SetCostoDamage();
+        GenericService.SetCostoCollisionResistance();
     }
 }

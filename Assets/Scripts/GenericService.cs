@@ -7,6 +7,9 @@ public static class GenericService
 {
     private static int asteroideID = 0;
     private static Dictionary<int, int> punteggioAsteroidi = new Dictionary<int, int>();
+    private static Dictionary<int, int> costoSpawnRate;
+    private static Dictionary<int, int> costoDamage;
+    private static Dictionary<int, int> costoCollisionResistance;
     private static int countAsteroidi = 0;
     private static float totalGameTime = 0;
 
@@ -30,10 +33,10 @@ public static class GenericService
     #endregion
 
     #region Upgrade
-    public static Dictionary<int, int> GetCostoSpawnRate()
+    public static void SetCostoSpawnRate()
     {
         //la chiave sarà la velocità di sparo, che è univoca e il valore sarà il costo
-        var valore = new Dictionary<int, int>
+        costoSpawnRate = new Dictionary<int, int>
         {
             //parte da 1.5 (non calcolabile per il costo) e arriva fino a 0.5
             //uso (spawnRate * 10) come chiave per comodità
@@ -48,14 +51,12 @@ public static class GenericService
             { 6, 450 },
             { 5, 500 }
         };
-
-        return valore;
     }
 
-    public static Dictionary<int, int> GetCostoDamage()
+    public static void SetCostoDamage()
     {
         //la chiave sarà il danno, che è univoca e il valore sarà il costo
-        var valore = new Dictionary<int, int>
+        costoDamage = new Dictionary<int, int>
         {
             //parte da 1 (non calcolabile per il costo) e arriva fino a 15
             { 2, 25 },
@@ -73,22 +74,33 @@ public static class GenericService
             { 14, 550 },
             { 15, 600 }
         };
-
-        return valore;
     }
 
-    public static Dictionary<int, int> GetCostoCollisionResistance()
+    public static void SetCostoCollisionResistance()
     {
         //la chiave sarà la resistenza alle collisioni, che è univoca e il valore sarà il costo
-        var valore = new Dictionary<int, int>
+        costoCollisionResistance = new Dictionary<int, int>
         {
             //parte da 1 (non calcolabile per il costo) e arriva fino a 3
             { 1, 300 },
             { 2, 450 },
             { 3, 700 }
         };
+    }
 
-        return valore;
+    public static Dictionary<int, int> GetCostoSpawnRate()
+    {
+        return costoSpawnRate;
+    }
+
+    public static Dictionary<int, int> GetCostoDamage()
+    {
+        return costoDamage;
+    }
+
+    public static Dictionary<int, int> GetCostoCollisionResistance()
+    {
+        return costoCollisionResistance;
     }
     #endregion
 
