@@ -17,8 +17,8 @@ public class Rewarded : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListe
     private void Start()
     {
         progress50.text = "0/2";
-        //progress75.text = "0/3";
-        //progress100.text = "0/4";
+        progress75.text = "0/3";
+        progress100.text = "0/4";
     }
 
     private void Awake()

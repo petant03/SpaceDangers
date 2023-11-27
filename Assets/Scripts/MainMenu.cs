@@ -24,23 +24,9 @@ public class MainMenu : MonoBehaviour
 
     private void ControlPrefs()
     {
-        if(PlayerPrefs.HasKey("50Monete"))
-        {
-            PlayerPrefs.DeleteKey("50Monete");
-            PlayerPrefs.SetInt("50Monete", 0); //servono due video per ottenere la ricompensa
-        }
-
-        if (PlayerPrefs.HasKey("75Monete"))
-        {
-            PlayerPrefs.DeleteKey("75Monete");
-            PlayerPrefs.SetInt("75Monete", 0); //servono tre video per ottenere la ricompensa
-        }
-
-        if (PlayerPrefs.HasKey("100Monete"))
-        {
-            PlayerPrefs.DeleteKey("100Monete");
-            PlayerPrefs.SetInt("100Monete", 0); //servono quattro video per ottenere la ricompensa
-        }
+        PlayerPrefs.SetInt("50Monete", 0); //servono due video per ottenere la ricompensa
+        PlayerPrefs.SetInt("75Monete", 0); //servono tre video per ottenere la ricompensa
+        PlayerPrefs.SetInt("100Monete", 0); //servono quattro video per ottenere la ricompensa
     }
 
     private void InitCosti()
