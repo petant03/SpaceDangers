@@ -8,17 +8,27 @@ public class Rewarded : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListe
     public string androidAdUnitId;
     public string iosAdUnitId;
 
-    public Text progress50;
-    public Text progress75;
-    public Text progress100;
+    [Header("--- Slider ---")]
+    public Slider progress50;
+    public Slider progress75;
+    public Slider progress100;
+
+    [Header("--- Text ---")]
+    public Text txtProgress50;
+    public Text txtProgress75;
+    public Text txtProgress100;
 
     string adUnitId;
 
     private void Start()
     {
-        progress50.text = "0/2";
-        progress75.text = "0/3";
-        progress100.text = "0/4";
+        progress50.enabled = false;
+        progress75.enabled = false;
+        progress100.enabled = false;
+
+        txtProgress50.text = "0/2";
+        txtProgress75.text = "0/3";
+        txtProgress100.text = "0/4";
     }
 
     private void Awake()
@@ -52,7 +62,8 @@ public class Rewarded : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListe
             else
                 PlayerPrefs.SetInt("50Monete", (PlayerPrefs.GetInt("50Monete") + 1));
 
-            progress50.text = PlayerPrefs.GetInt("50Monete").ToString() + "/2";
+            progress50.value = PlayerPrefs.GetInt("50Monete");
+            txtProgress50.text = PlayerPrefs.GetInt("50Monete").ToString() + "/2";
         }
         else if (buttonId == 75)
         {
@@ -64,7 +75,8 @@ public class Rewarded : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListe
             else
                 PlayerPrefs.SetInt("75Monete", (PlayerPrefs.GetInt("75Monete") + 1));
 
-            progress75.text = PlayerPrefs.GetInt("75Monete").ToString() + "/3";
+            progress75.value = PlayerPrefs.GetInt("75Monete");
+            txtProgress75.text = PlayerPrefs.GetInt("75Monete").ToString() + "/3";
         }
         else if (buttonId == 100)
         {
@@ -76,7 +88,8 @@ public class Rewarded : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListe
             else
                 PlayerPrefs.SetInt("100Monete", (PlayerPrefs.GetInt("100Monete") + 1));
 
-            progress100.text = PlayerPrefs.GetInt("100Monete").ToString() + "/4";
+            progress100.value = PlayerPrefs.GetInt("100Monete");
+            txtProgress100.text = PlayerPrefs.GetInt("100Monete").ToString() + "/4";
         }
         else
             Debug.LogError("Id errato");
