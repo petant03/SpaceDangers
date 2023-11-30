@@ -10,24 +10,30 @@ public class SpaceshipAbility : MonoBehaviour
 
     private int coins;
     private const string upgrade = "Il prossimo miglioramento costa {0} monete.";
+    private const string max = "Hai raggiunto il livello massimo!";
 
-    public GameObject textMaxSpawnRate;
-    public GameObject textDescriptionSpawnRate;
-    public GameObject textNextUpgradeSpawnRate;
+    [Header("--- Spawn Rate ---")]
+    public Text descriptionSpawnRate;
+    public Text nextUpgradeSpawnRate;
+    public Text txtBtnSpawnRate;
 
-    public GameObject textMaxDamage;
-    public GameObject textDescriptionDamage;
-    public GameObject textNextUpgradeDamage;
+    [Header("--- Damage ---")]
+    public Text descriptionDamage;
+    public Text nextUpgradeDamage;
+    public Text txtBtnDamage;
 
-    public GameObject textMaxCollisionResistance;
-    public GameObject textDescriptionCollisionResistance;
-    public GameObject textNextUpgradeCollisionResistance;
+    [Header("--- Resistance ---")]
+    public Text descriptionCollisionResistance;
+    public Text nextUpgradeCollisionResistance;
+    public Text txtBtnCollisionResistance;
 
-    public GameObject alertCoins;
-
+    [Header("--- Ability ---")]
     public float spawnRate;
     public int damage;
     public int collisionResistance;
+
+    [Header("--- Alert ---")]
+    public GameObject alertCoins;
 
     private void Start()
     {
@@ -39,51 +45,75 @@ public class SpaceshipAbility : MonoBehaviour
     public void Update()
     {
         #region SpawnRate
-        var costoPerMiglioramentoSpawnRate = GenericService.GetCostoSpawnRate()[Mathf.FloorToInt((spawnRate * 10) - 1)];
+        var costoPerMiglioramentoSpawnRate = 0;
+
+        if(this.spawnRate > 0.5f)
+            costoPerMiglioramentoSpawnRate = GenericService.GetCostoSpawnRate()[Mathf.FloorToInt((spawnRate * 10) - 1)];
         
-        if (textDescriptionSpawnRate != null)
-            textDescriptionSpawnRate.GetComponent<Text>().text = "Spara un proiettile ogni " + this.spawnRate.ToString("F2") + " secondi.";
+        if (descriptionSpawnRate != null)
+            descriptionSpawnRate.text = "Spara un proiettile ogni " + this.spawnRate.ToString("F2") + " secondi.";
 
-        if (this.spawnRate <= 0.5f)
+        if (descriptionSpawnRate != null)
         {
-            if(textMaxSpawnRate != null)
-                textMaxSpawnRate.SetActive(true);
+            if (this.spawnRate > 0.5f)
+                nextUpgradeSpawnRate.text = String.Format(upgrade, costoPerMiglioramentoSpawnRate.ToString());
+            else
+            {
+                nextUpgradeSpawnRate.text = max;
+                nextUpgradeSpawnRate.color = Color.red;
+                nextUpgradeSpawnRate.fontStyle = FontStyle.Bold;
+                txtBtnSpawnRate.color = Color.red;
+                txtBtnSpawnRate.fontStyle = FontStyle.Bold;
+            }
         }
-
-        if (textDescriptionSpawnRate != null)
-            textNextUpgradeSpawnRate.GetComponent<Text>().text = String.Format(upgrade, costoPerMiglioramentoSpawnRate.ToString());
         #endregion
 
         #region Damage
-        var costoPerMiglioramentoDamage = GenericService.GetCostoDamage()[damage + 1];
+        var costoPerMiglioramentoDamage = 0;
 
-        if (textDescriptionDamage != null)
-            textDescriptionDamage.GetComponent<Text>().text = "Un proiettile infligge " + this.damage + " danni.";
+        if(this.damage < 15)
+            costoPerMiglioramentoDamage = GenericService.GetCostoDamage()[damage + 1];
 
-        if (this.damage == 15)
+        if (descriptionDamage != null)
+            descriptionDamage.text = "Un proiettile infligge " + this.damage + " danni.";
+
+        if (descriptionDamage != null)
         {
-            if (textMaxDamage != null)
-                textMaxDamage.SetActive(true);
+            if (this.damage < 15)
+                nextUpgradeDamage.text = String.Format(upgrade, costoPerMiglioramentoDamage.ToString());
+            else
+            {
+                nextUpgradeDamage.text = max;
+                nextUpgradeDamage.color = Color.red;
+                nextUpgradeDamage.fontStyle = FontStyle.Bold;
+                txtBtnDamage.color = Color.red;
+                txtBtnDamage.fontStyle = FontStyle.Bold;
+            }
         }
-
-        if (textDescriptionDamage != null)
-            textNextUpgradeDamage.GetComponent<Text>().text = String.Format(upgrade, costoPerMiglioramentoDamage.ToString());
         #endregion
 
         #region CollisionResistance 
-        var costoPerMiglioramentoCollisionResistance = GenericService.GetCostoCollisionResistance()[collisionResistance + 1];
 
-        if (textDescriptionCollisionResistance != null)
-            textDescriptionCollisionResistance.GetComponent<Text>().text = "Resistenza a " + this.collisionResistance + " collisioni.";
+        var costoPerMiglioramentoCollisionResistance = 0;
+        if (this.collisionResistance < 3)
+            costoPerMiglioramentoCollisionResistance = GenericService.GetCostoCollisionResistance()[collisionResistance + 1];
 
-        if (this.collisionResistance == 4)
+        if (descriptionCollisionResistance != null)
+            descriptionCollisionResistance.text = "Resistenza a " + this.collisionResistance + " collisioni.";
+
+        if (descriptionCollisionResistance != null)
         {
-            if (textMaxCollisionResistance != null)
-                textMaxCollisionResistance.SetActive(true);
+            if (this.collisionResistance < 3)
+                nextUpgradeCollisionResistance.text = String.Format(upgrade, costoPerMiglioramentoCollisionResistance.ToString());
+            else
+            {
+                nextUpgradeCollisionResistance.text = max;
+                nextUpgradeCollisionResistance.color = Color.red;
+                nextUpgradeCollisionResistance.fontStyle = FontStyle.Bold;
+                txtBtnCollisionResistance.color = Color.red;
+                txtBtnCollisionResistance.fontStyle = FontStyle.Bold;
+            }
         }
-
-        if (textDescriptionCollisionResistance != null)
-            textNextUpgradeCollisionResistance.GetComponent<Text>().text = String.Format(upgrade, costoPerMiglioramentoCollisionResistance.ToString());
         #endregion
     }
 
@@ -97,7 +127,7 @@ public class SpaceshipAbility : MonoBehaviour
     {
         var costoPerMiglioramento = GenericService.GetCostoSpawnRate();
 
-        if(spawnRate > 0.6F)
+        if(spawnRate >= 0.6F)
         {
             var costoTmp = costoPerMiglioramento[Mathf.FloorToInt((spawnRate * 10) - 1)];
             if(coins >= costoTmp)
