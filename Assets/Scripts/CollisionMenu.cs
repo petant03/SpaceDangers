@@ -8,6 +8,7 @@ public class CollisionMenu : MonoBehaviour
         SceneManager.LoadScene("Home");
         GameController.gameover = false;
         GenericService.ResetTotalGameTime();
+        GenericService.SetAfterGame(true);
     }
 
     public void Restart()
@@ -17,5 +18,6 @@ public class CollisionMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         GameController.gameover = false;
         GenericService.ResetTotalGameTime();
+        GenericService.SetAfterGame(true);
     }
 }

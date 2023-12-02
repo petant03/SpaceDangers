@@ -15,6 +15,8 @@ public class HomeController : MonoBehaviour
     {
         ss = new SaveLoadSystem();
         SetStats();
+
+        GenericService.Ads(gameObject);
     }
 
     public void SetStats()

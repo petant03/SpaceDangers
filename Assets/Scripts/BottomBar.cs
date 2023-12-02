@@ -8,6 +8,7 @@ public class BottomBar : MonoBehaviour
     public void Home()
     {
         SceneManager.LoadScene("Home");
+        GenericService.SetFromBottomBar(true);
     }
 
     public void Shop()

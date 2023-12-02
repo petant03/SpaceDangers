@@ -12,6 +12,8 @@ public static class GenericService
     private static Dictionary<int, int> costoCollisionResistance;
     private static int countAsteroidi = 0;
     private static float totalGameTime = 0;
+    private static bool afterGame;
+    private static bool fromBottomBar;
 
     #region Asteroide
     public static int GetID()
@@ -121,6 +123,7 @@ public static class GenericService
     }
     #endregion
 
+    #region Time
     public static void SetTotalGameTime(float value)
     {
         totalGameTime += value;
@@ -135,4 +138,42 @@ public static class GenericService
     {
         totalGameTime = 0;
     }
+    #endregion
+
+    #region Ads
+    public static void SetAfterGame(bool value)
+    {
+        afterGame = value;
+    }
+
+    public static bool GetAfterGame()
+    {
+        return afterGame;
+    }
+
+    public static void SetFromBottomBar(bool value)
+    {
+        fromBottomBar = value;
+    }
+
+    public static bool GetFromBottomBar()
+    {
+        return fromBottomBar;
+    }
+
+    public static void Ads(GameObject go)
+    {
+        if(afterGame && !fromBottomBar)
+        {
+            //controllo per video ogni due volte che torno nella home
+            if (PlayerPrefs.GetInt("AdsAfterGame") == 1)
+            {
+                go.GetComponent<Interstitial>().LoadAd();
+                PlayerPrefs.SetInt("AdsAfterGame", 0);
+            }
+            else
+                PlayerPrefs.SetInt("AdsAfterGame", 1);
+        }
+    }
+    #endregion
 }

@@ -2935,8 +2935,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1206951281}
-  - component: {fileID: 1206951280}
-  - component: {fileID: 1206951278}
   - component: {fileID: 1206951277}
   m_Layer: 0
   m_Name: AdsManager
@@ -2965,35 +2963,6 @@ MonoBehaviour:
   txtProgress50: {fileID: 833810622}
   txtProgress75: {fileID: 24553524}
   txtProgress100: {fileID: 1587860410}
---- !u!114 &1206951278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1206951276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1002bded788c6bc4d9af19a787855d23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  androidAdUnitId: Interstitial_Android
-  iosAdUnitId: Interstitial_iOS
---- !u!114 &1206951280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1206951276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bace0c77f574314791d3bf533539572, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  androidGameId: 5482649
-  iosGameId: 5482648
-  isTestingMode: 1
 --- !u!4 &1206951281
 Transform:
   m_ObjectHideFlags: 0

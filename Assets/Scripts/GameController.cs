@@ -14,6 +14,9 @@ public class GameController : MonoBehaviour
     {
         gameover = false;
         isPause = false;
+
+        GenericService.SetFromBottomBar(false);
+
     }
 
     // Update is called once per frame

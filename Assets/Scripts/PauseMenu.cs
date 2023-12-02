@@ -15,6 +15,7 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("Home");
         GameController.isPause = false;
         GenericService.ResetTotalGameTime();
+        GenericService.SetAfterGame(true);
     }
 
     public void Resume()
@@ -30,5 +31,6 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         GameController.isPause = false;
         GenericService.ResetTotalGameTime();
+        GenericService.SetAfterGame(true);
     }
 }
