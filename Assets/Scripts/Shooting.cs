@@ -16,7 +16,14 @@ public class Shooting : MonoBehaviour
         var ss = new SaveLoadSystem();
         var ability = ss.LoadAbility();
 
-        spawnRate = ability != null ? float.Parse(ability.Split(';')[0]) : 1.5F;
+        if (ability != null)
+        {
+            float tmp = int.Parse(ability.Split(';')[0]);
+            float sr = tmp / 10;
+            spawnRate = sr;
+        }
+        else
+            spawnRate = 1.5F;
     }
 
     private void Awake()

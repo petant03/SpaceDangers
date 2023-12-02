@@ -29,12 +29,16 @@ public class SpaceshipAbility : MonoBehaviour
     public Text txtBtnCollisionResistance;
 
     [Header("--- Ability ---")]
-    public float spawnRate;
+    public int spawnRate;
     public int damage;
     public int collisionResistance;
 
     [Header("--- Alert ---")]
-    public GameObject alertCoins;
+    public GameObject alert;
+
+    private int costoPerMiglioramentoSpawnRate = 0;
+    private int costoPerMiglioramentoDamage = 0;
+    private int costoPerMiglioramentoCollisionResistance = 0;
 
     private void Start()
     {
@@ -46,17 +50,15 @@ public class SpaceshipAbility : MonoBehaviour
     public void Update()
     {
         #region SpawnRate
-        var costoPerMiglioramentoSpawnRate = 0;
-
-        if(this.spawnRate > 0.5f)
-            costoPerMiglioramentoSpawnRate = GenericService.GetCostoSpawnRate()[Mathf.FloorToInt((spawnRate * 10) - 1)];
+        if (this.spawnRate > 5)
+            costoPerMiglioramentoSpawnRate = GenericService.GetCostoSpawnRate()[spawnRate - 1];
         
         if (descriptionSpawnRate != null)
-            descriptionSpawnRate.text = "Spara un proiettile ogni " + this.spawnRate.ToString("F2") + " secondi.";
+            descriptionSpawnRate.text = "Spara un proiettile ogni " + ((float)this.spawnRate / 10).ToString("F2") + " secondi.";
 
         if (descriptionSpawnRate != null)
         {
-            if (this.spawnRate > 0.5f)
+            if (this.spawnRate > 5)
                 nextUpgradeSpawnRate.text = String.Format(upgrade, costoPerMiglioramentoSpawnRate.ToString());
             else
             {
@@ -70,8 +72,6 @@ public class SpaceshipAbility : MonoBehaviour
         #endregion
 
         #region Damage
-        var costoPerMiglioramentoDamage = 0;
-
         if(this.damage < 15)
             costoPerMiglioramentoDamage = GenericService.GetCostoDamage()[damage + 1];
 
@@ -94,8 +94,6 @@ public class SpaceshipAbility : MonoBehaviour
         #endregion
 
         #region CollisionResistance 
-
-        var costoPerMiglioramentoCollisionResistance = 0;
         if (this.collisionResistance < 3)
             costoPerMiglioramentoCollisionResistance = GenericService.GetCostoCollisionResistance()[collisionResistance + 1];
 
@@ -128,19 +126,17 @@ public class SpaceshipAbility : MonoBehaviour
     {
         var costoPerMiglioramento = GenericService.GetCostoSpawnRate();
 
-        if(spawnRate >= 0.6F)
+        if (spawnRate >= 6)
         {
-            var costoTmp = costoPerMiglioramento[Mathf.FloorToInt((spawnRate * 10) - 1)];
-            if(coins >= costoTmp)
+            var costoTmp = costoPerMiglioramento[spawnRate - 1];
+            if (coins >= costoTmp)
             {
                 coins -= costoTmp;
-                spawnRate -= 0.1f;
+                spawnRate -= 1;
                 SaveAbility();
             }
             else
-            {
-                alertCoins.SetActive(true);
-            }
+                alert.SetActive(true);
         }
 
 
@@ -160,9 +156,7 @@ public class SpaceshipAbility : MonoBehaviour
                 SaveAbility();
             }
             else
-            {
-                alertCoins.SetActive(true);
-            }
+                alert.SetActive(true);
         }
 
     }
@@ -171,7 +165,7 @@ public class SpaceshipAbility : MonoBehaviour
     {
         var costoPerMiglioramento = GenericService.GetCostoCollisionResistance();
 
-        if (collisionResistance < 4)
+        if (collisionResistance < 3)
         {
             var costoTmp = costoPerMiglioramento[collisionResistance + 1];
             if (coins >= costoTmp)
@@ -181,15 +175,13 @@ public class SpaceshipAbility : MonoBehaviour
                 SaveAbility();
             }
             else
-            {
-                alertCoins.SetActive(true);
-            }
+                alert.SetActive(true);
         }
 
     }
     #endregion
 
-    #region Ability
+    #region Save
     private void SaveAbility()
     {
         ss.SaveAbility(this);
@@ -202,13 +194,13 @@ public class SpaceshipAbility : MonoBehaviour
 
         if (data != null)
         {
-            spawnRate = float.Parse(data.Split(';')[0]);
+            spawnRate = int.Parse(data.Split(';')[0]);
             damage = int.Parse(data.Split(';')[1]);
             collisionResistance = int.Parse(data.Split(';')[2]);
         }
         else
         {
-            spawnRate = 1.5f;
+            spawnRate = 15;
             damage = 1;
             collisionResistance = 0;
         }
