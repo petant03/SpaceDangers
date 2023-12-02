@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -188,6 +189,7 @@ public class SpaceshipAbility : MonoBehaviour
     }
     #endregion
 
+    #region Ability
     private void SaveAbility()
     {
         ss.SaveAbility(this);
@@ -211,4 +213,17 @@ public class SpaceshipAbility : MonoBehaviour
             collisionResistance = 0;
         }
     }
+    #endregion
+
+    #region Alert
+    public void GoToShop()
+    {
+        SceneManager.LoadScene("Shop");
+    }
+
+    public void Play()
+    {
+        SceneManager.LoadScene("Game");
+    }
+    #endregion
 }
