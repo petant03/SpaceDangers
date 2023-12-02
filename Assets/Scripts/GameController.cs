@@ -1,10 +1,10 @@
-using TMPro;
+using System;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
     float spawnTime;
-    float spawnRate = 2f; //ogni 2.5 secondi
+    private float spawnRate;
     public GameObject asteroide;
     public static bool gameover;
     public static bool isPause;
@@ -14,27 +14,36 @@ public class GameController : MonoBehaviour
     {
         gameover = false;
         isPause = false;
+        spawnRate = 3f;
 
         GenericService.SetFromBottomBar(false);
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!gameover)
+        if (!gameover && !isPause)
         {
-            if(!isPause)
-            {
-                spawnTime += Time.deltaTime;
-                GenericService.SetTotalGameTime(spawnTime);
+            spawnTime += Time.deltaTime;
+            
+            GenericService.SetTotalGameTime(Time.deltaTime * 15);
 
-                if (spawnTime > spawnRate)
-                {
-                    spawnTime -= spawnRate;
-                    Vector2 pos = new Vector2(Random.Range(-2f, 2f), 6f);
-                    Instantiate(asteroide, pos, Quaternion.identity);
-                }
+            var t = GenericService.GetTotalGameTime() / 25;
+
+            if (t >= 0 && t <= 20)
+                spawnRate = 2.5f;
+            else if (t >= 21 && t <= 40)
+                spawnRate = 2f;
+            else if (t >= 41 && t <= 60)
+                spawnRate = 1.5f;
+            else if (t >= 61)
+                spawnRate = 1f;
+
+            if (spawnTime > spawnRate)
+            {
+                spawnTime -= spawnRate;
+                Vector2 pos = new Vector2(UnityEngine.Random.Range(-2f, 2f), 6f);
+                Instantiate(asteroide, pos, Quaternion.identity);
             }
         }
     }
