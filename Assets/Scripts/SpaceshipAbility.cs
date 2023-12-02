@@ -61,13 +61,7 @@ public class SpaceshipAbility : MonoBehaviour
             if (this.spawnRate > 5)
                 nextUpgradeSpawnRate.text = String.Format(upgrade, costoPerMiglioramentoSpawnRate.ToString());
             else
-            {
-                nextUpgradeSpawnRate.text = max;
-                nextUpgradeSpawnRate.color = Color.red;
-                nextUpgradeSpawnRate.fontStyle = FontStyle.Bold;
-                txtBtnSpawnRate.color = Color.red;
-                txtBtnSpawnRate.fontStyle = FontStyle.Bold;
-            }
+                ChangeColorText(nextUpgradeSpawnRate, txtBtnSpawnRate);
         }
         #endregion
 
@@ -83,13 +77,7 @@ public class SpaceshipAbility : MonoBehaviour
             if (this.damage < 15)
                 nextUpgradeDamage.text = String.Format(upgrade, costoPerMiglioramentoDamage.ToString());
             else
-            {
-                nextUpgradeDamage.text = max;
-                nextUpgradeDamage.color = Color.red;
-                nextUpgradeDamage.fontStyle = FontStyle.Bold;
-                txtBtnDamage.color = Color.red;
-                txtBtnDamage.fontStyle = FontStyle.Bold;
-            }
+                ChangeColorText(nextUpgradeDamage, txtBtnDamage);
         }
         #endregion
 
@@ -105,13 +93,7 @@ public class SpaceshipAbility : MonoBehaviour
             if (this.collisionResistance < 3)
                 nextUpgradeCollisionResistance.text = String.Format(upgrade, costoPerMiglioramentoCollisionResistance.ToString());
             else
-            {
-                nextUpgradeCollisionResistance.text = max;
-                nextUpgradeCollisionResistance.color = Color.red;
-                nextUpgradeCollisionResistance.fontStyle = FontStyle.Bold;
-                txtBtnCollisionResistance.color = Color.red;
-                txtBtnCollisionResistance.fontStyle = FontStyle.Bold;
-            }
+                ChangeColorText(nextUpgradeCollisionResistance, txtBtnCollisionResistance);
         }
         #endregion
     }
@@ -119,6 +101,15 @@ public class SpaceshipAbility : MonoBehaviour
     public string GetRecapAbility()
     {
         return spawnRate + ";" + damage + ";" + collisionResistance; 
+    }
+
+    private void ChangeColorText(Text t, Text txtBtn)
+    {
+        t.text = max;
+        t.color = Color.red;
+        t.fontStyle = FontStyle.Bold;
+        txtBtn.color = Color.red;
+        txtBtn.fontStyle = FontStyle.Bold;
     }
 
     #region Upgrade
