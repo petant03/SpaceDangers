@@ -106,10 +106,10 @@ public class SpaceshipAbility : MonoBehaviour
     private void ChangeColorText(Text t, Text txtBtn)
     {
         t.text = max;
-        t.color = Color.red;
+        t.color = Color.blue;
         t.fontStyle = FontStyle.Bold;
-        txtBtn.color = Color.red;
-        txtBtn.fontStyle = FontStyle.Bold;
+        txtBtn.color = Color.blue;
+        //txtBtn.fontStyle = FontStyle.Bold;
     }
 
     #region Upgrade
